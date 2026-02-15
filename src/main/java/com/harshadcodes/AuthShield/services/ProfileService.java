@@ -5,5 +5,7 @@ import com.harshadcodes.AuthShield.dtos.ProfileResponse;
 
 public interface ProfileService {
 
-    public ProfileResponse createUser(ProfileRequest request);
+    ProfileResponse createUser(ProfileRequest request);
+
+    ProfileResponse getProfile(String email);
 }
