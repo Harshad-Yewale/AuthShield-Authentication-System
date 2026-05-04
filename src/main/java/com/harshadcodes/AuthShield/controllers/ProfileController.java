@@ -3,7 +3,9 @@ package com.harshadcodes.AuthShield.controllers;
 
 import com.harshadcodes.AuthShield.dtos.ProfileRequest;
 import com.harshadcodes.AuthShield.dtos.ProfileResponse;
+import com.harshadcodes.AuthShield.services.EmailService;
 import com.harshadcodes.AuthShield.services.ProfileService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,16 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileController {
 
    private final ProfileService profileService;
+   private final EmailService emailService;
 
    @PostMapping("/register")
    @ResponseStatus(HttpStatus.CREATED)
+   @Transactional
     public ProfileResponse createUser(@RequestBody ProfileRequest request){
+       System.out.println(">" +System.getenv("MAIL_USERNAME") + "<");
+       System.out.println(">" + System.getenv("MAIL_PASSWORD") + "<");
        ProfileResponse response= profileService.createUser(request);
+       emailService.sendWelcomeMail(response.getEmail(),response.getName());
        return response;
    }
 
