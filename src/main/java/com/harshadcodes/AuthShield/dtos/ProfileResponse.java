@@ -5,14 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProfileResponse {
+public record ProfileResponse(
+        String userId,
+        String name,
+        String email,
+        boolean isAccountVerified) {
 
-    private String userId;
-    private String name;
-    private String email;
-    private boolean isAccountVerified;
+
 }

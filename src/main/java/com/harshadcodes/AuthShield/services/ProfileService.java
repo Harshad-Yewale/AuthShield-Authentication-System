@@ -8,4 +8,12 @@ public interface ProfileService {
     ProfileResponse createUser(ProfileRequest request);
 
     ProfileResponse getProfile(String email);
+
+    void sendResetOtp(String email);
+
+    String resetPassword(String email,String otp,String newPassword);
+
+    String sendVerifyOtp(String toEmail);
+
+    String verifyOtp(String email , String otp);
 }

@@ -1,16 +1,16 @@
 package com.harshadcodes.AuthShield.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class AuthRequest {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-    private String email;
-    private String password;
-}
+public record AuthRequest (
+        @Email(message = "Enter a valid email address")
+        @NotBlank(message = "email is required")
+        String email,
+
+        @NotBlank(message = "password is required")
+        @Size(min = 6, message = "password must be at least 6 characters long")
+        String password
+) { }

@@ -39,7 +39,56 @@ public class EmailService {
             mailSender.send(message);
         }
         catch (Exception e) {
-            throw new RuntimeException("Failed to send email", e);
+            throw new RuntimeException("Failed to send Welcome email", e);
+        }
+    }
+
+    public void sendResetOtp(String toEmail,String name,String otp){
+        try {
+            ClassPathResource resource=new ClassPathResource("templates/ResetOtp-email.html");
+            String html=new String(resource.getInputStream().readAllBytes());
+
+            html=html.replace("{{appName}}","AuthShield");
+            html=html.replace("{{name}}",name);
+            html=html.replace("{{otp}}",otp);
+
+            MimeMessage message=mailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(message,true);
+
+            mimeMessageHelper.setFrom(fromMail);
+            mimeMessageHelper.setTo(toEmail);
+            mimeMessageHelper.setSubject("AuthShield Reset Otp");
+            mimeMessageHelper.setText(html,true);
+
+            mailSender.send(message);
+        }
+        catch (Exception e){
+            throw new RuntimeException("failed to send reset Otp email",e);
+        }
+    }
+
+    public void sendVerifyOtp(String toEmail, String name, String otp){
+
+        try {
+            ClassPathResource resource = new ClassPathResource("templates/VerifyOtp-email.html");
+            String html = new String(resource.getInputStream().readAllBytes());
+
+            html=html.replace("{{appName}}","AuthShield");
+            html=html.replace("{{name}}",name);
+            html=html.replace("{{otp}}",otp);
+
+            MimeMessage message= mailSender.createMimeMessage();
+            MimeMessageHelper helper= new MimeMessageHelper(message,true);
+
+            helper.setTo(toEmail);
+            helper.setSubject("Verify Otp Email");
+            helper.setFrom(fromMail);
+            helper.setText(html,true);
+
+            mailSender.send(message);
+        }
+        catch (Exception e){
+            throw new RuntimeException("Failed to send Verify Otp email");
         }
     }
 }
