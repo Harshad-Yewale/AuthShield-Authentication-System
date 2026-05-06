@@ -1,5 +1,6 @@
 package com.harshadcodes.AuthShield.services;
 
+import com.harshadcodes.AuthShield.exceptions.EmailException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +40,7 @@ public class EmailService {
             mailSender.send(message);
         }
         catch (Exception e) {
-            throw new RuntimeException("Failed to send Welcome email", e);
+            throw new EmailException("Failed to send Welcome email",e);
         }
     }
 
@@ -63,7 +64,7 @@ public class EmailService {
             mailSender.send(message);
         }
         catch (Exception e){
-            throw new RuntimeException("failed to send reset Otp email",e);
+            throw new EmailException("failed to send reset Otp email",e);
         }
     }
 
@@ -88,7 +89,7 @@ public class EmailService {
             mailSender.send(message);
         }
         catch (Exception e){
-            throw new RuntimeException("Failed to send Verify Otp email");
+            throw new EmailException("Failed to send Verify Otp email", e);
         }
     }
 }

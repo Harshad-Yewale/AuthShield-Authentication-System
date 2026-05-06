@@ -2,18 +2,18 @@ package com.harshadcodes.AuthShield.services;
 
 import com.harshadcodes.AuthShield.dtos.ProfileRequest;
 import com.harshadcodes.AuthShield.dtos.ProfileResponse;
+import com.harshadcodes.AuthShield.exceptions.ResourceAlreadyExistException;
+import com.harshadcodes.AuthShield.exceptions.ResourceNotFoundException;
 import com.harshadcodes.AuthShield.models.UserEntity;
 import com.harshadcodes.AuthShield.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.security.SecureRandom;
 import java.util.UUID;
+
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,14 +31,14 @@ public class ProfileServiceImpl implements  ProfileService{
             UserEntity savedUser = userRepository.save(userProfile);
             return convertToProfileResponse(savedUser);
         }
-        throw new ResponseStatusException(HttpStatus.CONFLICT,"Email is already in use");
+        throw new ResourceAlreadyExistException("user","email", request.email());
     }
 
     @Override
     public ProfileResponse getProfile(String email) {
-       UserEntity existingUser= userRepository.findByEmail(email).orElseThrow(()->{
-            return new UsernameNotFoundException("User not found With Email: "+email);
-       });
+       UserEntity existingUser= userRepository.findByEmail(email)
+               .orElseThrow(()->new ResourceNotFoundException("user","email",email)
+       );
        return convertToProfileResponse(existingUser);
     }
 
@@ -46,7 +46,7 @@ public class ProfileServiceImpl implements  ProfileService{
     @Transactional
     public void sendResetOtp(String email) {
         UserEntity user=userRepository.findByEmail(email)
-                .orElseThrow(()->new UsernameNotFoundException("User with email"+email+" does not exist"));
+                .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
         String otp=String.valueOf(100000+secureRandom.nextInt(999999));
         long expirationTime=System.currentTimeMillis()+(5*60*1000);
@@ -61,7 +61,7 @@ public class ProfileServiceImpl implements  ProfileService{
     @Override
     public String resetPassword(String email, String otp, String newPassword) {
         UserEntity user=userRepository.findByEmail(email)
-                .orElseThrow(()->new UsernameNotFoundException("User with email\"+email+\" does not exist"));
+                .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
         if(user.getResetOtp() == null || !user.getResetOtp().equals(otp)){
             throw new RuntimeException("Otp Invalid");
@@ -84,7 +84,7 @@ public class ProfileServiceImpl implements  ProfileService{
     @Transactional
     public String sendVerifyOtp(String toEmail) {
         UserEntity user=userRepository.findByEmail(toEmail)
-                .orElseThrow(()->new UsernameNotFoundException("User with email\"+email+\" does not exist"));
+                .orElseThrow(()->new ResourceNotFoundException("user","email",toEmail));
 
         if (user.getIsAccountVerified()!=null && user.getIsAccountVerified()){
             return "User is already verified";
@@ -106,7 +106,7 @@ public class ProfileServiceImpl implements  ProfileService{
     public String verifyOtp(String email, String otp) {
 
         UserEntity user=userRepository.findByEmail(email)
-                .orElseThrow(()->new RuntimeException("User with email"+email+" does not exist"));
+                .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
         if(user.getVerifyOtp()== null || !user.getVerifyOtp().equals(otp)){
             throw new RuntimeException("Invalid Otp");

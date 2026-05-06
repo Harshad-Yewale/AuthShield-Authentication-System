@@ -33,7 +33,7 @@ public class AuthController {
     private final ProfileService profileService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest request){
+    public ResponseEntity<?> login(@RequestBody AuthRequest request) throws Exception {
         try {
            authenticate(request.email(),request.password());
            final UserDetails userDetails=appUserDetailsService.loadUserByUsername(request.email());
@@ -49,25 +49,10 @@ public class AuthController {
                     .body(new AuthResponse(request.email(), jwtToken));
         }
         catch (BadCredentialsException e){
-            Map<String, Object>error=new HashMap<>();
-
-            error.put("error",true);
-            error.put("message","Email or password Incorrect");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-        }
-        catch (DisabledException e){
-            Map<String, Object>error=new HashMap<>();
-
-            error.put("error",true);
-            error.put("message","Account has been disabled");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+          throw new BadCredentialsException("Invalid Credentials");
         }
         catch (Exception e){
-            Map<String, Object>error=new HashMap<>();
-
-            error.put("error",true);
-            error.put("message","Authentication failed");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+            throw new Exception("login failed for some reason");
         }
 
     }
@@ -86,7 +71,7 @@ public class AuthController {
 
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestBody @Valid ResetPasswordRequest request){
-        String msg= profileService.resetPassword(request.getEmail(),request.getOtp(),request.getNewPassword());
+        String msg= profileService.resetPassword(request.email(),request.otp(),request.newPassword());
         return ResponseEntity.ok(msg);
     }
 
@@ -98,7 +83,7 @@ public class AuthController {
 
     @PostMapping("/verify-account")
     public ResponseEntity<String> verifyAccount(@RequestBody @Valid VerifyAccountRequest request){
-        String msg= profileService.verifyOtp(request.getEmail(), request.getOtp());
+        String msg= profileService.verifyOtp(request.email(), request.otp());
         return ResponseEntity.ok(msg);
     }
 

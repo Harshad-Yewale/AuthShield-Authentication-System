@@ -1,5 +1,6 @@
 package com.harshadcodes.AuthShield.services;
 
+import com.harshadcodes.AuthShield.exceptions.ResourceNotFoundException;
 import com.harshadcodes.AuthShield.models.CustomUserDetails;
 import com.harshadcodes.AuthShield.models.UserEntity;
 import com.harshadcodes.AuthShield.repositories.UserRepository;
@@ -23,7 +24,7 @@ public class AppUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity existingUser= userRepository.findByEmail(email).orElseThrow(()->
-                new UsernameNotFoundException("Email not found "));
+                new ResourceNotFoundException("user","email",email));
 
         return new CustomUserDetails(existingUser);
     }
