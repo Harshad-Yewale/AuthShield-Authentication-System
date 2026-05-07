@@ -29,7 +29,9 @@ public class JwtCustomFilter extends OncePerRequestFilter {
             "/register",
             "/send-reset-otp",
             "/reset-password",
-            "/logout");
+            "/logout",
+            "/swagger-ui/**",
+            "/v3/api-docs/**");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

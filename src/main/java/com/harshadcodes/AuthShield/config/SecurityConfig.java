@@ -44,7 +44,10 @@ public class SecurityConfig {
                                 "/register",
                                 "/send-reset-otp",
                                 "/reset-password",
-                                "/logout")
+                                "/logout" ,
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                                )
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .logout(AbstractHttpConfigurer::disable)
