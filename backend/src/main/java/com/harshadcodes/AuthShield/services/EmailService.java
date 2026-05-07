@@ -35,7 +35,7 @@ public class EmailService {
             helper.setTo(toEmail);
             helper.setSubject("Welcome To AuthShield");
             helper.setText(html,true);
-            helper.setFrom(fromMail);
+            helper.setFrom(fromMail,"AuthShieldTeam");
 
             mailSender.send(message);
         }
@@ -56,7 +56,7 @@ public class EmailService {
             MimeMessage message=mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(message,true);
 
-            mimeMessageHelper.setFrom(fromMail);
+            mimeMessageHelper.setFrom(fromMail,"AuthShieldTeam");
             mimeMessageHelper.setTo(toEmail);
             mimeMessageHelper.setSubject("AuthShield Reset Otp");
             mimeMessageHelper.setText(html,true);
@@ -83,7 +83,7 @@ public class EmailService {
 
             helper.setTo(toEmail);
             helper.setSubject("Verify Otp Email");
-            helper.setFrom(fromMail);
+            helper.setFrom(fromMail,"AuthShieldTeam");
             helper.setText(html,true);
 
             mailSender.send(message);

@@ -22,6 +22,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse>handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request){
 
+        log.error("method argument not valid exception occurred : ",e);
         Map<String,String> errors=new HashMap<>();
 
         for(FieldError fieldError:e.getBindingResult().getFieldErrors()){
@@ -42,6 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResponse> handleBadCredentialsException(BadCredentialsException e, HttpServletRequest request
     ) {
+        log.error("bad credentials exception occurred : ",e);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(
                         ErrorResponse.builder()
@@ -57,6 +59,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EmailException.class)
     public ResponseEntity<ErrorResponse>handleEmailException(EmailException e, HttpServletRequest request){
 
+        log.error("email exception occurred : ",e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                 ErrorResponse.builder()
                         .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
@@ -70,6 +73,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse>handleResourceNotFoundException(ResourceNotFoundException e,HttpServletRequest request){
 
+        log.error("resource not found exception occurred : ",e);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
                 ErrorResponse.builder()
                         .status(HttpStatus.NOT_FOUND.value())
@@ -83,6 +87,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceAlreadyExistException.class)
     public ResponseEntity<ErrorResponse>handleResourceAlreadyExistException(ResourceAlreadyExistException e,HttpServletRequest request){
 
+        log.error("resource already exists exception occurred : ",e);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(
                 ErrorResponse.builder()
                         .status(HttpStatus.CONFLICT.value())
@@ -97,7 +102,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse>handleRuntimeException(RuntimeException e,HttpServletRequest request){
 
-        log.error("Runtime Exception occured: "+e);
+        log.error("Runtime Exception occurred: ",e);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
                 ErrorResponse.builder()
                         .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
