@@ -2,6 +2,7 @@ package com.harshadcodes.AuthShield.services;
 
 import com.harshadcodes.AuthShield.dtos.ProfileRequest;
 import com.harshadcodes.AuthShield.dtos.ProfileResponse;
+import com.harshadcodes.AuthShield.exceptions.EmailException;
 import com.harshadcodes.AuthShield.exceptions.ResourceAlreadyExistException;
 import com.harshadcodes.AuthShield.exceptions.ResourceNotFoundException;
 import com.harshadcodes.AuthShield.models.UserEntity;
@@ -64,11 +65,11 @@ public class ProfileServiceImpl implements  ProfileService{
                 .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
         if(user.getResetOtp() == null || !user.getResetOtp().equals(otp)){
-            throw new RuntimeException("Otp Invalid");
+            throw new EmailException("Otp Invalid");
         }
 
         if(user.getResetOtpExpiredAt()<System.currentTimeMillis()){
-            throw new RuntimeException("Otp Expired");
+            throw new  EmailException("Otp Expired");
         }
 
         user.setPassword(passwordEncoder.encode(newPassword));
@@ -109,11 +110,11 @@ public class ProfileServiceImpl implements  ProfileService{
                 .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
         if(user.getVerifyOtp()== null || !user.getVerifyOtp().equals(otp)){
-            throw new RuntimeException("Invalid Otp");
+            throw new EmailException("Otp Invalid");
         }
 
         if(user.getVerifyOtpExpireAt()<System.currentTimeMillis()){
-            throw new RuntimeException("Otp Expired");
+            throw new EmailException("Otp Expired");
         }
 
         user.setIsAccountVerified(true);

@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
                 ErrorResponse.builder()
                         .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                         .timestamp(LocalDateTime.now())
-                        .error("Failed to send the email")
+                        .error("Mail Exception occurred")
                         .message(e.getMessage())
                         .path(request.getRequestURI())
                         .build()
