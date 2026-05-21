@@ -1,0 +1,336 @@
+.home-container {
+
+  min-height: calc(100vh - 90px);
+
+  padding: 40px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #f8fafc
+    );
+}
+
+/* Welcome Section */
+
+.welcome-card {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding: 40px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #38bdf8
+    );
+
+  color: white;
+
+  box-shadow:
+    0 20px 40px rgba(37,99,235,.25);
+}
+
+.welcome-title {
+
+  font-size: 1.2rem;
+
+  margin-bottom: 12px;
+
+  opacity: .9;
+}
+
+.welcome-name {
+
+  font-size: 3.5rem;
+
+  font-weight: 800;
+
+  margin-bottom: 16px;
+
+  text-transform: uppercase;
+}
+
+.welcome-description {
+
+  max-width: 700px;
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+
+  opacity: .95;
+}
+
+.account-status {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.status-badge {
+
+  padding: 12px 18px;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.active {
+
+  background: rgba(255,255,255,.2);
+}
+
+.verified {
+
+  background: #10b981;
+}
+
+.pending {
+
+  background: #f59e0b;
+}
+
+/* Status Cards */
+
+.status-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 24px;
+
+  margin-top: 35px;
+}
+
+.status-card {
+
+  background: white;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+
+  transition: .3s;
+}
+
+.status-card:hover {
+
+  transform: translateY(-6px);
+}
+
+.status-icon {
+
+  width: 60px;
+
+  height: 60px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 1.4rem;
+
+  font-weight: 700;
+
+  color: white;
+}
+
+.success {
+
+  background: #10b981;
+}
+
+.info {
+
+  background: #3b82f6;
+}
+
+.warning {
+
+  background: #f59e0b;
+}
+
+/* Dashboard */
+
+.dashboard-grid {
+
+  margin-top: 35px;
+
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  gap: 24px;
+}
+
+.profile-card,
+.action-card {
+
+  background: white;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.08);
+}
+
+.card-title {
+
+  margin-bottom: 28px;
+
+  color: #1e293b;
+
+  font-size: 1.8rem;
+
+  font-weight: 700;
+}
+
+.profile-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 18px 0;
+
+  border-bottom:
+    1px solid #e2e8f0;
+}
+
+.profile-row:last-child {
+
+  border-bottom: none;
+}
+
+.profile-row span {
+
+  color: #64748b;
+
+  font-weight: 600;
+}
+
+.profile-row p {
+
+  margin: 0;
+
+  color: #1e293b;
+
+  font-weight: 600;
+}
+
+/* Buttons */
+
+.action-card {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.action-btn {
+
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 16px;
+
+  color: white;
+
+  font-size: 1.7rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.action-btn:hover {
+
+  transform: translateY(-3px);
+}
+
+.verify-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #f59e0b,
+      #fbbf24
+    );
+}
+
+.reset-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #f87171
+    );
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+
+  .welcome-card {
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .status-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-name {
+
+    font-size: 2.5rem;
+  }
+}

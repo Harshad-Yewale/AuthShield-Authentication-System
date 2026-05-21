@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import axios from 'axios';
 import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -7,6 +8,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import {BrowserRouter} from 'react-router-dom'
 import { AppContextProvider } from './context/AppContext.jsx'
+
+axios.defaults.withCredentials = true;
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>

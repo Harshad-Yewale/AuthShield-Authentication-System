@@ -8,6 +8,7 @@ import com.harshadcodes.AuthShield.dtos.VerifyAccountRequest;
 import com.harshadcodes.AuthShield.services.AppUserDetailsService;
 import com.harshadcodes.AuthShield.services.ProfileService;
 import com.harshadcodes.AuthShield.utils.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
@@ -51,10 +52,6 @@ public class AuthController {
         catch (BadCredentialsException e){
           throw new BadCredentialsException("Invalid Credentials");
         }
-        catch (Exception e){
-            throw new Exception("login failed for some reason");
-        }
-
     }
 
 
@@ -85,6 +82,20 @@ public class AuthController {
     public ResponseEntity<String> verifyAccount(@RequestBody @Valid VerifyAccountRequest request){
         String msg= profileService.verifyOtp(request.email(), request.otp());
         return ResponseEntity.ok(msg);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(){
+        ResponseCookie cookie= ResponseCookie.from("jwt","")
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("strict")
+                .build();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE,cookie.toString())
+                .body("logout successful");
     }
 
     private void authenticate(String email, String password) {

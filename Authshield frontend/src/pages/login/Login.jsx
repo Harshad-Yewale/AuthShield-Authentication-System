@@ -4,6 +4,7 @@ import axios from "axios";
 import { assets } from "../../assets/assets";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
+import { toast } from "react-toastify";
 
 function Login() {
 
@@ -13,7 +14,8 @@ function Login() {
   const {
     backendURL,
     setIsLoggedIn,
-    setUserData
+    setUserData,
+    getUserData
   } = useContext(AppContext);
 
   // Login / Signup Toggle
@@ -61,15 +63,13 @@ function Login() {
           }
         );
 
-        if (response.data.success) {
+        if (response.status === 200) {
 
+          toast.success("Logged in successfully");
           setIsLoggedIn(true);
-
-          setUserData(response.data.user);
-
-          navigate("/");
+          console.log(getUserData());
+          navigate('/');
         }
-
       }
 
       // SIGNUP
@@ -80,12 +80,9 @@ function Login() {
           formData.password !==
           formData.confirmPassword
         ) {
-
-          alert("Passwords do not match");
-
+          toast.error("Passwords do not match");
           return;
         }
-
         const response = await axios.post(
           `${backendURL}/register`,
           {
@@ -94,14 +91,10 @@ function Login() {
             password: formData.password,
           }
         );
-
-        if (response.data.success) {
-
-          setIsLoggedIn(true);
-
-          setUserData(response.data.user);
-
-          navigate('/');
+        if (response.status===201) {
+          setIsLogin(true);
+          navigate('/login');
+          toast.success("Account created successfully");
         }
       }
 
@@ -113,17 +106,14 @@ function Login() {
       if (error.response?.data?.errors) {
 
         const errors = error.response.data.errors;
-
         const firstError = Object.values(errors)[0];
-
-        alert(firstError);
+        toast.error(firstError);
 
       }
 
       // General Message
       else {
-
-        alert(
+        toast.error(
           error.response?.data?.message ||
           "Something went wrong"
         );

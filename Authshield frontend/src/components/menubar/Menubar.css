@@ -119,6 +119,94 @@
   transform: translateY(-2px);
 }
 
+.profile-menu {
+
+  position: relative;
+
+  cursor: pointer;
+}
+
+.profile-avatar {
+
+  width: 68px;
+  height: 68px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.9rem;
+  padding: 20px;
+  font-weight: 700;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #38bdf8
+    );
+
+  box-shadow:
+    0 8px 20px rgba(37,99,235,.25);
+
+  transition: .3s;
+}
+
+.profile-avatar:hover {
+
+  transform: scale(1.05);
+}
+
+.profile-dropdown {
+
+  position: absolute;
+
+  top: 70px;
+  right: 0;
+
+  min-width: 180px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.12);
+
+  z-index: 100;
+}
+
+.profile-dropdown button {
+
+  width: 100%;
+
+  border: none;
+  background: white;
+
+  padding: 14px 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  font-size: 1.55rem;
+
+  transition: .2s;
+}
+
+.profile-dropdown button:hover {
+
+  background: #f8fafc;
+}
+
 /* Responsive */
 
 @media (max-width: 768px) {
