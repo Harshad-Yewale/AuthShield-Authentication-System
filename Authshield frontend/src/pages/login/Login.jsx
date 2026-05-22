@@ -66,8 +66,9 @@ function Login() {
         if (response.status === 200) {
 
           toast.success("Logged in successfully");
+           await getUserData();
           setIsLoggedIn(true);
-          console.log(getUserData());
+          
           navigate('/');
         }
       }

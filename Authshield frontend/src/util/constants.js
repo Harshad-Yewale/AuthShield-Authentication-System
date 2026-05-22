@@ -1,3 +1,3 @@
 export const AppConstants={
-  BACKEND_URI:"http://localhost:8080/api/v1.0"
+  BACKEND_URI:"https://authshield-authentication-system.onrender.com/api/v1.0"
 }

@@ -113,12 +113,12 @@ function ResetPassword() {
             );
 
             if (response.status === 200) {
-
+                 
                 toast.success(
                     "Password updated successfully"
                 );
-
                 navigate("/");
+               
             }
 
         } catch (error) {

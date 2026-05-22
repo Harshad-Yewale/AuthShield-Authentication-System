@@ -114,14 +114,8 @@ function EmailVerify() {
                 toast.success(
                     "Email verified successfully"
                 );
-
                 await getUserData();
-
-                setTimeout(() => {
-
-                    navigate("/");
-
-                }, 1500);
+                navigate("/");
             }
 
         } catch (error) {
