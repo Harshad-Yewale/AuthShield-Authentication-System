@@ -1,8 +1,8 @@
 .home-container {
 
-  min-height: calc(100vh - 90px);
+  max-height: calc(100vh - 100px);
 
-  padding: 40px;
+  padding: 10px 40px;
 
   background:
     linear-gradient(
@@ -172,7 +172,7 @@
 
 .info {
 
-  background: #3b82f6;
+  background: #054fc6;
 }
 
 .warning {
@@ -252,7 +252,47 @@
 
   font-weight: 600;
 }
+.verification-required{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    min-height:350px;
+}
 
+.verification-emoji{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.verification-required h2{
+    margin-bottom:12px;
+    color:#0f172a;
+}
+
+.verification-required p{
+    color:#64748b;
+    max-width:400px;
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+.verification-features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    width:100%;
+    margin-bottom:30px;
+}
+
+.verification-features div{
+    background:#f8fafc;
+    padding:12px;
+    border-radius:10px;
+    font-size:0.95rem;
+    font-weight:500;
+}
 /* Buttons */
 
 .action-card {

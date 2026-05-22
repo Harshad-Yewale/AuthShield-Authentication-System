@@ -1,0 +1,83 @@
+.verify-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8fafc;
+    padding: 20px;
+}
+
+.verify-card {
+    background: white;
+    width: 450px;
+    max-width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.verify-card h2 {
+    margin-bottom: 10px;
+}
+
+.verify-card p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.send-btn,
+.verify-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+}
+
+.otp-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.otp-boxes input {
+    width: 55px;
+    height: 55px;
+    text-align: center;
+    font-size: 22px;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    outline: none;
+}
+
+.otp-boxes input:focus {
+    border-color: #2563eb;
+}
+
+.resend-container{
+    text-align:center;
+    margin-top:15px;
+    margin-bottom: 15px;
+}
+
+.countdown-text{
+    color:#64748b;
+    font-size:0.95rem;
+}
+
+.resend-btn{
+    border:none;
+    background:none;
+    color:#2563eb;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.resend-btn:hover{
+    text-decoration:underline;
+}

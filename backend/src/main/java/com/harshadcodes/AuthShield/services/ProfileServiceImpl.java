@@ -49,7 +49,7 @@ public class ProfileServiceImpl implements  ProfileService{
         UserEntity user=userRepository.findByEmail(email)
                 .orElseThrow(()->new ResourceNotFoundException("user","email",email));
 
-        String otp=String.valueOf(100000+secureRandom.nextInt(999999));
+        String otp=String.valueOf(100000+secureRandom.nextInt(900000));
         long expirationTime=System.currentTimeMillis()+(5*60*1000);
         user.setResetOtp(otp);
         user.setResetOtpExpiredAt(expirationTime);
@@ -91,7 +91,7 @@ public class ProfileServiceImpl implements  ProfileService{
             return "User is already verified";
         }
 
-        String otp=String.valueOf(100000 + secureRandom.nextInt(999999));
+        String otp=String.valueOf(100000 + secureRandom.nextInt(900000));
         Long expirationTime=System.currentTimeMillis()+(15 * 60 *  1000);
 
         user.setVerifyOtp(otp);

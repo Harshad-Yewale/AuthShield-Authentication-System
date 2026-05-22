@@ -127,39 +127,70 @@ function HomePage() {
 
       <div className="dashboard-grid">
 
-        <div className="profile-card">
+        {
+          userData?.isAccountVerified ? (
 
-          <h2 className="card-title">
-            Profile Details
-          </h2>
+            <div className="profile-card">
 
-          <div className="profile-row">
-            <span>Full Name</span>
-            <p>{userData?.name}</p>
-          </div>
+              <h2 className="card-title">
+                Profile Details
+              </h2>
 
-          <div className="profile-row">
-            <span>Email Address</span>
-            <p>{userData?.email}</p>
-          </div>
+              <div className="profile-row">
+                <span>Full Name</span>
+                <p>{userData?.name}</p>
+              </div>
 
-          <div className="profile-row">
-            <span>User ID</span>
-            <p>{userData?.userId}</p>
-          </div>
+              <div className="profile-row">
+                <span>Email Address</span>
+                <p>{userData?.email}</p>
+              </div>
 
-          <div className="profile-row">
-            <span>Account Status</span>
-            <p>
-              {
-                userData?.isAccountVerified
-                  ? "Verified ✅"
-                  : "Pending ❌"
-              }
-            </p>
-          </div>
+              <div className="profile-row">
+                <span>User ID</span>
+                <p>{userData?.userId}</p>
+              </div>
 
-        </div>
+              <div className="profile-row">
+                <span>Account Status</span>
+                <p>Verified ✅</p>
+              </div>
+
+            </div>
+
+          ) : (
+
+            <div className="profile-card verification-required">
+
+              <div className="verification-emoji">
+                🔐
+              </div>
+
+              <h2>Email Verification Required</h2>
+
+              <p>
+                You're one step away from unlocking your complete
+                AuthShield experience.
+              </p>
+
+              <div className="verification-features">
+
+                <div>✨ Access Profile Dashboard</div>
+
+                <div>🛡️ Enhanced Account Security</div>
+
+                <div>🔑 Secure Password Recovery</div>
+
+                <div>🚀 Full Platform Access</div>
+
+              </div>
+
+            </div>
+
+          )
+        }
+
+        
 
         <div className="action-card">
 
@@ -171,15 +202,16 @@ function HomePage() {
                 Verify Email
               </button>
             } 
+            { userData?.isAccountVerified &&
               <button className="action-btn reset-btn" onClick={()=>navigate('/reset-password')}>
                 reset password
-              </button>      
+              </button>  
+            }         
 
         </div>
-
       </div>
 
-    </div>
+      </div>
   );
 }
 
