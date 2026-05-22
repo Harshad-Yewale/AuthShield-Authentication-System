@@ -25,7 +25,7 @@ public class JwtCustomFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
 
     private static final List<String> PUBLIC_URLS=List.of(
-//            "/login",
+            "/login",
             "/register",
             "/send-reset-otp",
             "/reset-password",

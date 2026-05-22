@@ -23,20 +23,17 @@ public class ProfileController {
    @PostMapping("/register")
    @ResponseStatus(HttpStatus.CREATED)
    @Transactional
-    public ProfileResponse createUser(@RequestBody @Valid ProfileRequest request){
-       System.out.println(">" +System.getenv("MAIL_USERNAME") + "<");
-       System.out.println(">" + System.getenv("MAIL_PASSWORD") + "<");
-       ProfileResponse response= profileService.createUser(request);
-       emailService.sendWelcomeMail(response.email(),response.name());
-       return response;
+   public ProfileResponse createUser(@RequestBody @Valid ProfileRequest request) {
+      System.out.println(">" + System.getenv("MAIL_USERNAME") + "<");
+      System.out.println(">" + System.getenv("MAIL_PASSWORD") + "<");
+      ProfileResponse response = profileService.createUser(request);
+      emailService.sendWelcomeMail(response.email(), response.name());
+      return response;
    }
 
    @GetMapping("/profile")
-   public ProfileResponse getProfile(@CurrentSecurityContext(expression = "authentication?.name")String email){
-     return profileService.getProfile(email);
+   public ProfileResponse getProfile(@CurrentSecurityContext(expression = "authentication?.name") String email) {
+      return profileService.getProfile(email);
 
    }
-
-
-
 }

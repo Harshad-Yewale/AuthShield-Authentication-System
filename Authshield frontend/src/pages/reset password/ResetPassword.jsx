@@ -1,30 +1,35 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AppContext } from "../../context/AppContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import "./EmailVerify.css";
+
+import "./ResetPassword.css";
 import OTPInput from "../../components/otp input/OTPInput";
 import OTPResend from "../../components/otp resend/OTPResend";
 
-function EmailVerify() {
+function ResetPassword() {
 
     const {
         backendURL,
-        getUserData,
         userData
     } = useContext(AppContext);
 
     const navigate = useNavigate();
 
     const [otpSent, setOtpSent] = useState(false);
+
     const [otp, setOtp] = useState("");
 
+    const [newPassword, setNewPassword] = useState("");
+
+    const [confirmPassword, setConfirmPassword] = useState("");
+
     const [loading, setLoading] = useState(false);
+
     const [countdown, setCountdown] = useState(0);
 
-    // Countdown Logic
     useEffect(() => {
 
         if (countdown <= 0) return;
@@ -39,7 +44,6 @@ function EmailVerify() {
 
     }, [countdown]);
 
-    // Send OTP
     const sendOtpHandler = async () => {
 
         try {
@@ -53,7 +57,7 @@ function EmailVerify() {
             }
 
             const response = await axios.get(
-                `${backendURL}/send-verifyOtp`,
+                `${backendURL}/send_resetOtp`,
                 {
                     params: {
                         email: userData.email
@@ -64,13 +68,16 @@ function EmailVerify() {
 
             if (response.status === 200) {
 
-                toast.success("OTP sent successfully");
+                toast.success(
+                    "OTP sent successfully"
+                );
+
                 setOtpSent(true);
-                setCountdown(15);
+
+                setCountdown(60);
             }
 
         } catch (error) {
-
             toast.error(
                 error.response?.data?.message ||
                 "Failed to send OTP"
@@ -82,27 +89,23 @@ function EmailVerify() {
         }
     };
 
-    // Verify OTP
-    const verifyOtpHandler = async (e) => {
+    const resetPasswordHandler = async (e) => {
 
         e.preventDefault();
 
-        if (otp.length !== 6) {
-
-            toast.error("Please enter valid OTP");
-
+        if(newPassword != confirmPassword){
+            toast.error("passwords do not, match plz enter same password");
             return;
         }
-
         try {
 
             setLoading(true);
-
             const response = await axios.post(
-                `${backendURL}/verify-account`,
+                `${backendURL}/reset-password`,
                 {
                     email: userData.email,
-                    otp
+                    otp,
+                    newPassword
                 },
                 {
                     withCredentials: true
@@ -112,27 +115,27 @@ function EmailVerify() {
             if (response.status === 200) {
 
                 toast.success(
-                    "Email verified successfully"
+                    "Password updated successfully"
                 );
 
-                await getUserData();
-
-                setTimeout(() => {
-
-                    navigate("/");
-
-                }, 1500);
+                navigate("/");
             }
 
         } catch (error) {
 
+           if(error.response?.data?.errors){
+                toast.error(
+                    Object.values(error.response.data.errors)[0]
+                );
+                return;
+            }
+            
             toast.error(
-              error.response?.data?.message ||
-                "Verification failed"
+                error.response?.data?.message ||
+                "Failed to reset password"
             );
 
         } finally {
-
             setLoading(false);
         }
     };
@@ -143,14 +146,12 @@ function EmailVerify() {
 
             <div className="verify-card">
 
-                <h2>
-                    Verify Email
-                </h2>
+                <h2> Reset Password</h2>
 
                 <p>
-                    Verify your email address to unlock
-                    all AuthShield features and enhance
-                    account security.
+                    Secure your account by creating
+                    a new password. We'll send a
+                    verification OTP to your email.
                 </p>
 
                 {
@@ -170,9 +171,7 @@ function EmailVerify() {
 
                     ) : (
 
-                        <form
-                            onSubmit={verifyOtpHandler}
-                        >
+                        <form onSubmit={resetPasswordHandler}>
 
                             <OTPInput
                                 length={6}
@@ -185,6 +184,30 @@ function EmailVerify() {
                                 loading={loading}
                             />
 
+                            <input
+                                type="password"
+                                placeholder="New Password"
+                                className="password-input"
+                                value={newPassword}
+                                onChange={(e) =>
+                                    setNewPassword(
+                                        e.target.value
+                                    )
+                                }
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Confirm Password"
+                                className="password-input"
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(
+                                        e.target.value
+                                    )
+                                }
+                            />
+
                             <button
                                 type="submit"
                                 className="verify-btn"
@@ -193,8 +216,8 @@ function EmailVerify() {
 
                                 {
                                     loading
-                                        ? "Verifying..."
-                                        : "Verify Email"
+                                        ? "Updating..."
+                                        : "Update Password"
                                 }
 
                             </button>
@@ -210,4 +233,4 @@ function EmailVerify() {
     );
 }
 
-export default EmailVerify;
+export default ResetPassword;

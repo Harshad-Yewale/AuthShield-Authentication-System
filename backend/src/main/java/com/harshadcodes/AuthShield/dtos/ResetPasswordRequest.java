@@ -14,5 +14,6 @@ public record ResetPasswordRequest (
         @NotBlank(message = "Otp is required")
         String otp,
         @NotBlank(message = "Password is required")
+        @Size(min = 6,message = "password must be at least 6 characters")
         String newPassword
 ){ }

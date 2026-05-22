@@ -1,0 +1,57 @@
+.otp-resend-container {
+
+    margin-top: 16px;
+
+    text-align: center;
+}
+
+.otp-countdown {
+
+    color: #64748b;
+
+    font-size: 0.95rem;
+
+    font-weight: 500;
+
+    margin: 0;
+}
+
+.otp-countdown span {
+
+    color: #2563eb;
+
+    font-weight: 700;
+}
+
+.otp-resend-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: #2563eb;
+
+    font-size: 0.95rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.otp-resend-btn:hover {
+
+    color: #1d4ed8;
+
+    text-decoration: underline;
+}
+
+.otp-resend-btn:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    text-decoration: none;
+}
