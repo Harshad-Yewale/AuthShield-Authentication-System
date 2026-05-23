@@ -14,6 +14,10 @@
 
 .hero-section {
 
+  max-width: 1400px;
+
+  margin: 0 auto;
+
   min-height: calc(100vh - 90px);
 
   display: flex;
@@ -22,9 +26,9 @@
 
   justify-content: space-between;
 
-  gap: 60px;
+  gap: 50px;
 
-  padding: 40px 80px;
+  padding: 40px 32px;
 }
 
 .hero-left {
@@ -52,7 +56,7 @@
 
 .hero-title {
 
-  font-size: 4.5rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
 
   font-weight: 800;
 
@@ -70,7 +74,7 @@
 
 .hero-description {
 
-  font-size: 2.2rem;
+  font-size: 1.35rem;
 
   line-height: 1.8;
 
@@ -84,6 +88,8 @@
 .hero-buttons {
 
   display: flex;
+
+  flex-wrap: wrap;
 
   gap: 16px;
 
@@ -100,7 +106,7 @@
 
   color: white;
 
-  font-size: 1.2rem;
+  font-size: 1rem;
 
   font-weight: 600;
 
@@ -127,9 +133,9 @@
 
   background: white;
 
-  font-size: 1.2rem;
-
   color: #2563eb;
+
+  font-size: 1rem;
 
   padding: 15px 34px;
 
@@ -138,19 +144,28 @@
   font-weight: 600;
 
   cursor: pointer;
+
+  transition: .3s;
+}
+
+.secondary-btn:hover {
+
+  background: #eff6ff;
 }
 
 .hero-highlights {
 
   display: flex;
 
-  font-size: 1.2rem;
+  flex-wrap: wrap;
 
-  gap: 30px;
+  gap: 24px;
 
   color: #334155;
 
   font-weight: 600;
+
+  font-size: 1rem;
 }
 
 .hero-right {
@@ -160,13 +175,15 @@
   display: flex;
 
   justify-content: center;
+
+  align-items: center;
 }
 
 .hero-image {
 
   width: 100%;
 
-  max-width: 950px;
+  max-width: 650px;
 
   animation:
     floatAnimation 4s ease-in-out infinite;
@@ -196,14 +213,18 @@
 
 .features-section {
 
-  padding: 80px;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 80px 32px;
 }
 
 .section-title {
 
   text-align: center;
 
-  font-size: 2.9rem;
+  font-size: 2.4rem;
 
   margin-bottom: 50px;
 
@@ -243,16 +264,34 @@
 
 .feature-icon {
 
-  font-size: 3.5rem;
+  font-size: 3rem;
 
   margin-bottom: 20px;
+}
+
+.feature-card h3 {
+
+  margin-bottom: 12px;
+
+  color: #0f172a;
+}
+
+.feature-card p {
+
+  color: #64748b;
+
+  line-height: 1.7;
 }
 
 /* SECURITY */
 
 .security-section {
 
-  padding: 0 80px 80px;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 0 32px 80px;
 }
 
 .security-card {
@@ -273,6 +312,8 @@
 
 .security-card h2 {
 
+  font-size: 2rem;
+
   margin-bottom: 30px;
 }
 
@@ -281,27 +322,35 @@
   list-style: none;
 
   padding: 0;
+
+  margin: 0;
 }
 
 .security-card li {
 
   margin-bottom: 16px;
 
-  font-size: 1.6rem;
+  font-size: 1.15rem;
+
+  line-height: 1.6;
 }
 
 /* CTA */
 
 .cta-section {
 
+  max-width: 1400px;
+
+  margin: 0 auto;
+
   text-align: center;
 
-  padding: 80px;
+  padding: 80px 32px;
 }
 
 .cta-section h2 {
 
-  font-size: 3.3rem;
+  font-size: 2.7rem;
 
   color: #0f172a;
 
@@ -309,6 +358,8 @@
 }
 
 .cta-section p {
+
+  font-size: 1.1rem;
 
   color: #64748b;
 
@@ -333,9 +384,18 @@
     font-size: 3rem;
   }
 
-  .features-grid {
+  .hero-description {
 
-    grid-template-columns: 1fr;
+    font-size: 1.15rem;
+
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+
+    justify-content: center;
   }
 
   .hero-highlights {
@@ -345,10 +405,55 @@
     gap: 12px;
   }
 
+  .features-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .hero-image {
+
+    max-width: 450px;
+  }
+
   .features-section,
   .security-section,
   .cta-section {
 
-    padding: 50px 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .section-title {
+
+    font-size: 2rem;
+  }
+
+  .cta-section h2 {
+
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .hero-title {
+
+    font-size: 2.5rem;
+  }
+
+  .hero-description {
+
+    font-size: 1rem;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+
+    width: 100%;
+  }
+
+  .security-card {
+
+    padding: 32px 24px;
   }
 }

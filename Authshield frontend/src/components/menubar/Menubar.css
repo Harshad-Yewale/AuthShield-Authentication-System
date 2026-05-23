@@ -1,39 +1,50 @@
 /* Navbar */
 
 .Navbar {
+
   width: 100%;
-  height: 90px;
+
+  height: 80px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
-  padding: 0 70px;
+  padding: 0 32px;
 
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255,255,255,.95);
 
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(15,23,42,.08);
 
   backdrop-filter: blur(10px);
 
   position: sticky;
+
   top: 0;
+
   z-index: 1000;
 }
 
 /* Left Section */
 
 .left-section {
+
   display: flex;
+
   align-items: center;
-  gap: 14px;
+
+  gap: 12px;
 }
 
-/* Logo Image */
+/* Logo */
 
 .left-section img {
-  width: 52px;
-  height: 52px;
+
+  width: 46px;
+
+  height: 46px;
 
   object-fit: contain;
 
@@ -45,10 +56,13 @@
 /* Logo Text */
 
 .logo-text {
+
   display: flex;
+
   align-items: center;
 
-  font-size: 2.9rem;
+  font-size: 2.2rem;
+
   font-weight: 700;
 
   font-family: "Archivo Black", sans-serif;
@@ -57,67 +71,75 @@
 
   line-height: 1;
 
-  letter-spacing: -1px;
+  letter-spacing: -.5px;
 
   cursor: pointer;
-
-  position: relative;
-  top: 4px;
 }
 
 .lego-text-decent {
+
   color: #38bdf8;
 }
 
 /* Right Section */
 
 .right-section {
+
   display: flex;
+
   align-items: center;
 }
 
 /* Login Button */
 
 .loginButton {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 
-  padding: 12px 22px;
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px 20px;
 
   border: none;
-  border-radius: 22px;
 
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #38bdf8
-  );
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #38bdf8
+    );
 
   color: white;
 
-  font-size: 1.3rem;
+  font-size: 1rem;
+
   font-weight: 600;
 
   cursor: pointer;
 
-  transition: all 0.3s ease;
+  transition: .3s;
 }
 
 .loginButton svg {
-  width: 22px;
-  height: 22px;
+
+  width: 20px;
+
+  height: 20px;
 }
 
 .loginButton:hover {
-  background: black;
-
-  color: white;
-
-  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.25);
 
   transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,.25);
 }
+
+/* Profile Menu */
 
 .profile-menu {
 
@@ -126,19 +148,24 @@
   cursor: pointer;
 }
 
+/* Avatar */
+
 .profile-avatar {
 
-  width: 68px;
-  height: 68px;
+  width: 52px;
+
+  height: 52px;
 
   border-radius: 50%;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
-  font-size: 1.9rem;
-  padding: 20px;
+  font-size: 1.2rem;
+
   font-weight: 700;
 
   color: white;
@@ -161,14 +188,17 @@
   transform: scale(1.05);
 }
 
+/* Dropdown */
+
 .profile-dropdown {
 
   position: absolute;
 
-  top: 70px;
+  top: 62px;
+
   right: 0;
 
-  min-width: 180px;
+  min-width: 190px;
 
   background: white;
 
@@ -177,7 +207,10 @@
   overflow: hidden;
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,.12);
+    0 12px 30px rgba(15,23,42,.12);
+
+  border:
+    1px solid rgba(226,232,240,.8);
 
   z-index: 100;
 }
@@ -187,17 +220,24 @@
   width: 100%;
 
   border: none;
+
   background: white;
 
   padding: 14px 18px;
 
   display: flex;
+
   align-items: center;
+
   gap: 10px;
 
   cursor: pointer;
 
-  font-size: 1.55rem;
+  font-size: .95rem;
+
+  font-weight: 500;
+
+  color: #334155;
 
   transition: .2s;
 }
@@ -207,37 +247,96 @@
   background: #f8fafc;
 }
 
-/* Responsive */
+/* Tablet */
+
+@media (max-width: 992px) {
+
+  .Navbar {
+
+    padding: 0 24px;
+  }
+
+  .logo-text {
+
+    font-size: 1.9rem;
+  }
+}
+
+/* Mobile */
 
 @media (max-width: 768px) {
 
   .Navbar {
-    padding: 0 24px;
-    height: 78px;
+
+    height: 72px;
+
+    padding: 0 16px;
   }
 
   .left-section {
-    gap: 10px;
+
+    gap: 8px;
   }
 
   .left-section img {
-    width: 42px;
-    height: 42px;
+
+    width: 38px;
+
+    height: 38px;
   }
 
   .logo-text {
-    font-size: 1.9rem;
+
+    font-size: 1.55rem;
   }
 
   .loginButton {
-    padding: 10px 16px;
 
-    font-size: 0.9rem;
+    padding: 10px 14px;
+
+    font-size: .9rem;
   }
 
   .loginButton svg {
+
     width: 18px;
+
     height: 18px;
   }
 
+  .profile-avatar {
+
+    width: 44px;
+
+    height: 44px;
+
+    font-size: 1rem;
+  }
+
+  .profile-dropdown {
+
+    min-width: 160px;
+  }
+
+  .profile-dropdown button {
+
+    font-size: .9rem;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 480px) {
+
+  .logo-text {
+
+    font-size: 1.3rem;
+  }
+
+  .loginButton {
+
+    padding: 8px 12px;
+
+    font-size: .85rem;
+  }
 }

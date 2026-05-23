@@ -1,19 +1,27 @@
 .otp-resend-container {
 
-    margin-top: 16px;
+    margin-top: 18px;
 
     text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
 }
 
 .otp-countdown {
 
+    margin: 0;
+
     color: #64748b;
 
-    font-size: 0.95rem;
+    font-size: .95rem;
 
     font-weight: 500;
-
-    margin: 0;
 }
 
 .otp-countdown span {
@@ -31,27 +39,75 @@
 
     color: #2563eb;
 
-    font-size: 0.95rem;
+    font-size: .95rem;
 
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    transition: all .25s ease;
 }
 
 .otp-resend-btn:hover {
 
     color: #1d4ed8;
 
-    text-decoration: underline;
+    background: rgba(37,99,235,.06);
+}
+
+.otp-resend-btn:active {
+
+    transform: scale(.98);
 }
 
 .otp-resend-btn:disabled {
 
-    opacity: 0.6;
+    opacity: .6;
 
     cursor: not-allowed;
 
-    text-decoration: none;
+    background: transparent;
+
+    transform: none;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+    .otp-countdown {
+
+        font-size: .9rem;
+    }
+
+    .otp-resend-btn {
+
+        font-size: .9rem;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    .otp-resend-container {
+
+        margin-top: 14px;
+    }
+
+    .otp-countdown {
+
+        font-size: .85rem;
+    }
+
+    .otp-resend-btn {
+
+        font-size: .85rem;
+
+        padding: 4px 8px;
+    }
 }
