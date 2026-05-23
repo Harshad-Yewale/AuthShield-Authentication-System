@@ -45,6 +45,7 @@ public class AuthController {
                     .maxAge(Duration.ofDays(1))
                     .sameSite("none")
                     .secure(true)
+                    .httpOnly(true)
                     .build();
 
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE,cookie.toString())
@@ -94,6 +95,7 @@ public class AuthController {
                 .maxAge(0)
                 .sameSite("none")
                 .secure(true)
+                .httpOnly(true)
                 .build();
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE,cookie.toString())
