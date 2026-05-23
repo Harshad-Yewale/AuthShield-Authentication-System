@@ -68,7 +68,6 @@ function Login() {
           toast.success("Logged in successfully");
            await getUserData();
           setIsLoggedIn(true);
-          
           navigate('/');
         }
       }
@@ -239,7 +238,7 @@ function Login() {
               isLogin && (
                 <div className="forgot-password">
 
-                  <button type="button">
+                  <button type="button" onClick={()=>navigate('/reset-password')}>
                     Forgot Password?
                   </button>
 

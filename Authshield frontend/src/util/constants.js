@@ -1,3 +1,3 @@
-export const AppConstants={
-  BACKEND_URI:"https://authshield-authentication-system.onrender.com/api/v1.0"
-}
+export const AppConstants=Object.freeze({
+  BACKEND_URI:import.meta.env.VITE_BACKEND_URL
+});
