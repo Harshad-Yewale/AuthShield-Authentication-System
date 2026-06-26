@@ -4,6 +4,21 @@
 <b>Production-Grade Authentication System with JWT and Email Verification using Spring Boot and Spring Security</b>
 </p>
 
+<p>
+  <a href="https://authshield-two.vercel.app/" target="_blank" rel="noopener noreferrer">
+    Visit the Live Website
+  </a>
+  <em>(Initial loading may take a few minutes due to Render's cold start.)</em>
+</p>
+
+<h4>Deployment Info</h4>
+
+<ul>
+  <li><strong>Backend:</strong> Render</li>
+  <li><strong>Frontend:</strong> Vercel</li>
+  <li><strong>Database:</strong> NeonDB</li>
+</ul>
+
 <hr>
 
 <h2>📌 Overview</h2>
