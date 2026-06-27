@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import ResetPassword from './pages/reset password/ResetPassword'
 import ProtectedRoute from './util/ProtectedRoute';
+import { Analytics } from '@vercel/analytics/react';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />}/>
           
         </Routes>
+        <Analytics/>
     </div>
   )
 }

@@ -7,7 +7,6 @@ function HomePage() {
 
   const { userData } = useContext(AppContext);
   const navigate = useNavigate();
-  console.log(userData);
 
   return (
     <div className="home-container">
