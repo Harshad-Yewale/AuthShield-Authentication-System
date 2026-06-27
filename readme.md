@@ -18,7 +18,6 @@
   <li><strong>Frontend:</strong> Vercel</li>
   <li><strong>Database:</strong> NeonDB</li>
 </ul>
-
 <hr>
 
 <h2>📌 Overview</h2>
