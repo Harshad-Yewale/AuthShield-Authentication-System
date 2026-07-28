@@ -238,7 +238,7 @@ function Login() {
               isLogin && (
                 <div className="forgot-password">
 
-                  <button type="button" onClick={()=>navigate('/reset-password')}>
+                  <button type="button" onClick={()=>navigate('/forgot-password')}>
                     Forgot Password?
                   </button>
 

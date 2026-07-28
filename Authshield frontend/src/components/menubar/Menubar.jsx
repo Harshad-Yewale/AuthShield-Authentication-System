@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { assets } from '../../assets/assets';
 import { LogIn, LogOut, User } from 'lucide-react';
 import './Menubar.css';
@@ -18,6 +18,23 @@ function Menubar() {
   } = useContext(AppContext);
 
   const [showDropdown, setShowDropdown] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+      const handleClickOutside = (event) => {
+          if (
+              menuRef.current &&
+              !menuRef.current.contains(event.target)
+          ) {
+              setShowDropdown(false);
+          }
+      };
+
+      document.addEventListener("click", handleClickOutside);
+
+      return () =>
+          document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   return (
     <nav className="Navbar">
@@ -49,15 +66,12 @@ function Menubar() {
 
             <div
               className="profile-menu"
-              onMouseEnter={() =>
-                setShowDropdown(!showDropdown)
-              }
-              onMouseLeave={() =>
-                setShowDropdown(!showDropdown)
-              }
+              ref={menuRef}
             >
 
-              <div className="profile-avatar">
+              <div className="profile-avatar"
+               onClick={() => setShowDropdown(prev => !prev)}
+               >
 
                 {
                   userData?.name
