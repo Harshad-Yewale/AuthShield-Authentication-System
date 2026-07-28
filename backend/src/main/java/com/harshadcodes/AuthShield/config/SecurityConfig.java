@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/login",
                                 "/register",
-                                "/send-reset-otp",
+                                "/send_resetOtp",
                                 "/reset-password",
                                 "/logout" ,
                                 "/health",
